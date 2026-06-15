@@ -4,9 +4,9 @@ import { Whatsapp } from './Icons'
 
 export default function FinalCTA() {
   return (
-    <section className="relative z-10 pt-[30px] pb-[110px]">
+    <section className="relative z-10 pt-[30px] pb-[70px] md:pb-[110px]">
       <div className="wrap">
-        <Reveal className="relative overflow-hidden text-center rounded-[26px] py-16 px-7 border border-[rgba(106,47,176,0.35)] bg-[radial-gradient(700px_circle_at_50%_-10%,rgba(106,47,176,0.4),transparent_60%)] bg-panel">
+        <Reveal className="relative overflow-hidden text-center rounded-[26px] py-12 px-6 md:py-16 md:px-7 border border-[rgba(106,47,176,0.35)] bg-[radial-gradient(700px_circle_at_50%_-10%,rgba(106,47,176,0.4),transparent_60%)] bg-panel">
           <div className="eyebrow justify-center mb-4">{TAGLINE}</div>
           <h2 className="text-[clamp(28px,4.5vw,44px)] max-w-[680px] mx-auto mb-4">Pronto para centralizar e proteger os dados da sua empresa?</h2>
           <p className="text-muted text-[17px] max-w-[520px] mx-auto mb-8">

@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="relative z-10 border-t border-[var(--line)] py-[46px]">
       <div className="wrap flex flex-col gap-8">
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-[18px]">
-          <Link to="/"><img src={logoFull} alt="DataForce" className="h-[54px]" /></Link>
+          <Link to="/" className="self-center md:self-auto"><img src={logoFull} alt="DataForce" className="h-[54px]" /></Link>
           <div className="flex flex-col gap-[12px]">
             <a href={waURL} target="_blank" rel="noopener" className="text-muted text-sm inline-flex items-center gap-2 hover:text-ink transition-colors">
               <Whatsapp className="w-[18px] h-[18px]" /> {PHONE_DISPLAY}

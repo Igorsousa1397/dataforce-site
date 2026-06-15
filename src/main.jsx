@@ -7,9 +7,11 @@ import Privacidade from './pages/Privacidade.jsx'
 import Cookies from './pages/Cookies.jsx'
 import ScrollToTop from './ScrollToTop.jsx'
 import './index.css'
+import CursorTrail from './components/CursorTrail.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <CursorTrail />
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
