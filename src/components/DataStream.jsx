@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
-// Hero: rede tecnológica suave — nós conectados + hub central discreto.
-// Cores da marca. Respeita prefers-reduced-motion.
+// Hero: rede tecnológica (intensidade média) — nós conectados + hub central,
+// anéis concêntricos e pulsos de radar. Cores da marca.
 export default function DataStream() {
   const ref = useRef(null)
 
@@ -12,7 +12,7 @@ export default function DataStream() {
 
     const ctx = canvas.getContext('2d')
     let raf, w, h, cx, cy, dpr, pts, rings, t = 0
-    const LINK = 135
+    const LINK = 150
 
     const resize = () => {
       dpr = window.devicePixelRatio || 1
@@ -20,13 +20,13 @@ export default function DataStream() {
       h = canvas.height = canvas.offsetHeight * dpr
       cx = w / 2
       cy = h / 2
-      const n = Math.min(70, Math.floor((w * h) / (30000 * dpr)))
+      const n = Math.min(90, Math.floor((w * h) / (24000 * dpr)))
       pts = Array.from({ length: n }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.14 * dpr,
-        vy: (Math.random() - 0.5) * 0.14 * dpr,
-        gold: Math.random() < 0.07,
+        vx: (Math.random() - 0.5) * 0.2 * dpr,
+        vy: (Math.random() - 0.5) * 0.2 * dpr,
+        gold: Math.random() < 0.08,
       }))
       rings = []
     }
@@ -44,10 +44,9 @@ export default function DataStream() {
         if (p.y < 0 || p.y > h) p.vy *= -1
       }
 
-      // anéis concêntricos fixos (bem sutis)
-      ctx.strokeStyle = 'rgba(150,95,210,0.045)'
+      ctx.strokeStyle = 'rgba(150,95,210,0.055)'
       ctx.lineWidth = 1 * dpr
-      for (const f of [0.3, 0.55, 0.85]) {
+      for (const f of [0.25, 0.45, 0.7, 0.95]) {
         ctx.beginPath()
         ctx.arc(cx, cy, maxR * f, 0, Math.PI * 2)
         ctx.stroke()
@@ -58,7 +57,7 @@ export default function DataStream() {
           const a = pts[i], b = pts[j]
           const dist = Math.hypot(a.x - b.x, a.y - b.y)
           if (dist < L) {
-            ctx.strokeStyle = `rgba(150,95,210,${(1 - dist / L) * 0.16})`
+            ctx.strokeStyle = `rgba(150,95,210,${(1 - dist / L) * 0.22})`
             ctx.lineWidth = 1 * dpr
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
@@ -68,8 +67,8 @@ export default function DataStream() {
         }
         const a = pts[i]
         const dc = Math.hypot(a.x - cx, a.y - cy)
-        if (dc < L * 1.6) {
-          ctx.strokeStyle = `rgba(168,118,234,${(1 - dc / (L * 1.6)) * 0.08})`
+        if (dc < L * 1.7) {
+          ctx.strokeStyle = `rgba(168,118,234,${(1 - dc / (L * 1.7)) * 0.11})`
           ctx.beginPath()
           ctx.moveTo(a.x, a.y)
           ctx.lineTo(cx, cy)
@@ -77,12 +76,12 @@ export default function DataStream() {
         }
       }
 
-      // pulso de radar ocasional e discreto
-      if (t % 200 === 0) rings.push({ r: 0 })
+      if (t % 140 === 0) rings.push({ r: 0 })
+      ctx.globalCompositeOperation = 'lighter'
       for (let k = rings.length - 1; k >= 0; k--) {
         const ring = rings[k]
-        ring.r += 1 * dpr
-        const al = Math.max(0, 1 - ring.r / maxR) * 0.12
+        ring.r += 1.1 * dpr
+        const al = Math.max(0, 1 - ring.r / maxR) * 0.16
         if (al <= 0) { rings.splice(k, 1); continue }
         ctx.strokeStyle = `rgba(170,120,235,${al})`
         ctx.lineWidth = 1.2 * dpr
@@ -90,13 +89,13 @@ export default function DataStream() {
         ctx.arc(cx, cy, ring.r, 0, Math.PI * 2)
         ctx.stroke()
       }
+      ctx.globalCompositeOperation = 'source-over'
 
-      // nós
       for (const p of pts) {
         const rgb = p.gold ? '233,190,120' : '198,160,255'
-        ctx.fillStyle = `rgba(${rgb},0.65)`
+        ctx.fillStyle = `rgba(${rgb},0.8)`
         ctx.beginPath()
-        ctx.arc(p.x, p.y, 1.4 * dpr, 0, Math.PI * 2)
+        ctx.arc(p.x, p.y, 1.6 * dpr, 0, Math.PI * 2)
         ctx.fill()
       }
 
@@ -112,5 +111,5 @@ export default function DataStream() {
     }
   }, [])
 
-  return <canvas ref={ref} className="absolute inset-0 -z-10 opacity-[0.55]" aria-hidden="true" />
+  return <canvas ref={ref} className="absolute inset-0 -z-10 opacity-70" aria-hidden="true" />
 }
