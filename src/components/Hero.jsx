@@ -21,8 +21,7 @@ export default function Hero() {
       <div className="wrap grid grid-cols-1 lg:grid-cols-[1.05fr_.95fr] gap-[42px] lg:gap-[60px] items-center">
         <div>
           <h1 className="text-[clamp(40px,7vw,74px)] mb-5">
-            Protegemos os seus dados.{' '}
-            <span className="text-bronze block">Para que sua empresa nunca pare.</span>
+            Protegemos os seus dados.
           </h1>
           <p className="text-[clamp(17px,2.2vw,20px)] text-muted max-w-[560px]">
             Um File Server corporativo gerenciado pela DataForce: seus arquivos centralizados,

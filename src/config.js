@@ -6,8 +6,8 @@ export const waURL = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(WHATSA
 
 export const PHONE_DISPLAY = '(11) 94039-9341'
 export const EMAIL = 'comercial@dataforcehub.com'
-export const SITE = 'www.dataforcehub.com'
-export const SITE_URL = 'https://www.dataforcehub.com'
+export const SITE = 'dataforce-site-pi.vercel.app'
+export const SITE_URL = 'https://dataforce-site-pi.vercel.app'
 export const INSTAGRAM = 'https://instagram.com/data.force25'
 export const INSTAGRAM_HANDLE = '@data.force25'
 
